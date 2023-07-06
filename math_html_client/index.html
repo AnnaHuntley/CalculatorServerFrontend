@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Math App Exapmle</title>
+</head>
+<body>
+    <h3>Math App Exapmle</h3>
+    <label for="number1">Number 1</label>
+    <input type="number" id="number1" />
+    <br />
+    <label for="number2">Number 2</label>
+    <input type="number2" id="number2" />
+    <br />
+    <button onclick="add()">Add</button>
+    <button onclick="subtract()">Subtract</button>
+    <button onclick="multiply()">Multiply</button>
+    <button onclick="divide()">Divide</button>
+    <br />
+    <br />
+
+    <div id="result" />
+
+    <script>
+        async function add(){
+            var url="http://localhost:4000/sum"
+            var number1 = document.getElementById("number1").value
+            var number2 = document.getElementById("number2").value
+            var data ={
+                number1: number1,
+                number2: number2
+            } 
+            //fetch() function is used to send a POST request to the URL "http://localhost:4000/sum" with the provided number1 and number2 values as JSON data in the request body. fetch() is called, the code awaits the response using await response.json(). This waits for the response to complete and then extracts the JSON data from it.
+            var response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': "application/json",
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            console.log(response)
+            var result = await response.json()
+            console.log(result)
+
+            if(result.error) {
+                document.getElementById("result").innerText = result.error
+            }else{
+                document.getElementById("result").innerText = number1 + " + "+ number2+ " = "+ result.result
+            }
+        }
+        async function subtract(){
+            var url="http://localhost:4000/subtract"
+            var number1 = document.getElementById("number1").value
+            var number2 = document.getElementById("number2").value
+            var data ={
+                number1: number1,
+                number2: number2
+            } 
+                 var response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': "application/json",
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            console.log(response)
+            var result = await response.json()
+            console.log(result)
+
+            if(result.error) {
+                document.getElementById("result").innerText = result.error
+            }else{
+                document.getElementById("result").innerText = number1 + " - "+ number2+ " = "+ result.result
+            }
+        }
+        async function multiply(){
+            var url="http://localhost:4000/multiply"
+            var number1 = document.getElementById("number1").value
+            var number2 = document.getElementById("number2").value
+            var data ={
+                number1: number1,
+                number2: number2
+            } 
+                 var response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': "application/json",
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            console.log(response)
+            var result = await response.json()
+            console.log(result)
+
+            if(result.error) {
+                document.getElementById("result").innerText = result.error
+            }else{
+                document.getElementById("result").innerText = number1 + " * "+ number2+ " = "+ result.result
+            }
+        }
+        async function divide(){
+            var url="http://localhost:4000/divide"
+            var number1 = document.getElementById("number1").value
+            var number2 = document.getElementById("number2").value
+            var data ={
+                number1: number1,
+                number2: number2
+            } 
+                 var response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': "application/json",
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            console.log(response)
+            var result = await response.json()
+            console.log(result)
+
+            if(result.error) {
+                document.getElementById("result").innerText = result.error
+            }else{
+                document.getElementById("result").innerText = number1 + " / "+ number2+ " = "+ result.result
+            }
+        }
+    </script>
+</body>
+</html>
